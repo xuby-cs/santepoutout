@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santepoutout | Salud Adolescente Haitiana en Chile</title>
+    <!-- Carga de Tailwind CSS para un diseño responsivo y moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de Three.js para los elementos 3D interactivos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        /* Definición de la fuente Inter y estilos base */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC; /* Azul muy claro */
+            color: #1E293B; /* Azul oscuro para texto */
+        }
+        /* Estilos para el elemento 3D */
+        #three-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Detrás del contenido principal */
+            opacity: 0.1; /* Transparencia para sofisticación */
+            pointer-events: none; /* Permite hacer clic en el contenido HTML */
+        }
+        /* Color principal de la marca (Azul Profundo con Acrilico/Dorado) */
+        .brand-primary {
+            color: #0F172A;
+        }
+        .brand-bg-primary {
+            background-color: #0F172A;
+        }
+        .brand-accent {
+            color: #FFD700; /* Dorado/Amarillo tropical */
+        }
+        .tropical-accent {
+            background-color: #38A169; /* Verde tropical */
+        }
+        .haitian-blue {
+            background-color: #002D72; /* Azul de la bandera haitiana */
+        }
+        .chilean-red {
+            background-color: #D32F2F; /* Rojo de la bandera chilena */
+        }
+
+        /* Estilo para los cards de impacto */
+        .impact-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        .impact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Contenedor para el fondo 3D -->
+    <div id="three-container"></div>
+
+    <!-- Contenido Principal con Z-index alto -->
+    <div class="relative z-10">
+
+        <!-- Navegación -->
+        <header class="bg-white shadow-md sticky top-0 z-50">
+            <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+                <h1 class="text-3xl font-extrabold brand-primary tracking-tight">santepoutout</h1>
+                <div class="space-x-4 flex items-center">
+                    <a href="#mision" class="text-sm font-medium hover:brand-accent transition duration-200 hidden sm:inline">Misión</a>
+                    <a href="#enfermeria" class="text-sm font-medium hover:brand-accent transition duration-200 hidden sm:inline">Enfoque</a>
+                    <a href="#necesidades" class="text-sm font-medium hover:brand-accent transition duration-200 hidden sm:inline">Necesidades</a>
+                    <a href="#contacto" class="px-4 py-2 bg-blue-900 text-white rounded-lg shadow-lg hover:bg-blue-800 transition duration-300 text-sm font-semibold">Instagram</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Sección Hero y 3D (Superpuesta) -->
+        <section class="relative h-[80vh] flex items-center justify-center text-center p-4">
+            <!-- El canvas 3D está en el fondo, esta capa es el contenido -->
+            <div class="max-w-4xl space-y-6 bg-white bg-opacity-90 p-8 rounded-xl shadow-2xl backdrop-blur-sm border border-gray-100">
+                <p class="text-lg font-semibold brand-accent uppercase tracking-widest">Salud y Bienestar Juvenil Haitiano-Chileno</p>
+                <h2 class="text-6xl sm:text-7xl font-black brand-primary leading-tight">
+                    Conectando Culturas. <span class="text-blue-600">Fomentando el Bienestar.</span>
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Santepoutout es una plataforma dedicada a abordar los desafíos de salud que enfrentan los adolescentes de origen haitiano en Chile. Nuestro objetivo es promover la integración, asegurar el acceso a información vital y ofrecer un cuidado culturalmente sensible.
+                </p>
+                <a href="https://www.instagram.com/santepoutout/" target="_blank" class="inline-block mt-4 px-8 py-3 bg-blue-600 text-white text-lg font-bold rounded-xl hover:bg-blue-700 transition duration-300 shadow-xl transform hover:scale-[1.02]">
+                    Visita Nuestro Instagram
+                </a>
+            </div>
+        </section>
+
+        <!-- Sección Misión y Contexto -->
+        <section id="mision" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+                <!-- Columna de texto sobre la misión -->
+                <div class="space-y-6">
+                    <span class="text-sm font-semibold uppercase tracking-widest haitian-blue text-white inline-block px-3 py-1 rounded-full">Nuestra Misión</span>
+                    <h3 class="text-4xl font-extrabold brand-primary">
+                        Agentes de Equidad en la Atención
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">
+                        La adolescencia representa una doble vulnerabilidad (propia de la etapa de desarrollo y por el estatus migratorio). Nuestro proyecto se enfoca en ser el puente que garantice el derecho a la salud de los jóvenes haitianos, proveyendo al personal de enfermería las herramientas para un cuidado ético y profesional.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed text-lg font-semibold">
+                        Abordamos las barreras idiomáticas (Criollo Haitiano), el estrés aculturativo y la precariedad socioeconómica, reconociendo que la justicia social es el pilar de un cuidado integral.
+                    </p>
+                    <div class="flex space-x-4 pt-4">
+                        <span class="text-xl haitian-blue text-white p-3 rounded-xl">🇭🇹</span>
+                        <span class="text-xl chilean-red text-white p-3 rounded-xl">🇨🇱</span>
+                        <span class="text-xl tropical-accent text-white p-3 rounded-xl">✨</span>
+                    </div>
+                </div>
+
+                <!-- Elemento visual con estilo tropical/elegante -->
+                <div class="relative p-6 bg-gray-50 rounded-2xl shadow-xl overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-100 to-green-100 opacity-50"></div>
+                    <div class="relative z-10 p-8 space-y-4 border-l-4 border-tropical-accent bg-white rounded-lg shadow-lg">
+                        <p class="text-3xl font-bold brand-primary">"La atención de enfermería debe ser percibida como libre de discriminación y racismo."</p>
+                        <p class="text-gray-500 italic">- Principio de Seguridad Cultural</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Enfoque de Enfermería (Nuevo Contenido del Documento) -->
+        <section id="enfermeria" class="py-20 brand-bg-primary text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h3 class="text-4xl font-extrabold text-center mb-12 border-b-2 border-brand-accent pb-4">
+                    Enfoque de Enfermería: Marco RNAO
+                </h3>
+                <p class="text-center text-lg text-gray-300 mb-12 max-w-4xl mx-auto">
+                    Nuestro trabajo se fundamenta en la Guía de Buenas Prácticas de la RNAO ('Aceptación de la diversidad cultural en la atención sanitaria') para asegurar una atención de calidad y equitativa, siempre priorizando la visión del paciente.
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <!-- Concepto 1: Competencia Cultural -->
+                    <div class="p-6 rounded-xl bg-white text-gray-800 shadow-2xl space-y-4">
+                        <span class="haitian-blue text-white p-3 rounded-full inline-block text-2xl font-bold">1</span>
+                        <h4 class="text-xl font-bold brand-primary">Competencia Cultural</h4>
+                        <p class="text-gray-600">Un proceso continuo donde el profesional desarrolla la conciencia de sus propios prejuicios, adquiere conocimiento sobre la cultura haitiana y adapta el cuidado para superar la barrera idiomática (Kreyòl).</p>
+                    </div>
+
+                    <!-- Concepto 2: Seguridad Cultural -->
+                    <div class="p-6 rounded-xl bg-white text-gray-800 shadow-2xl space-y-4">
+                        <span class="tropical-accent text-white p-3 rounded-full inline-block text-2xl font-bold">2</span>
+                        <h4 class="text-xl font-bold brand-primary">Seguridad Cultural</h4>
+                        <p class="text-gray-600">Se enfoca en cómo la atención es percibida por el adolescente. La enfermería debe dignificar al paciente, asegurando que el trato sea libre de discriminación y racismo (un desafío documentado en Chile).</p>
+                    </div>
+
+                    <!-- Concepto 3: Humildad Cultural -->
+                    <div class="p-6 rounded-xl bg-white text-gray-800 shadow-2xl space-y-4">
+                        <span class="brand-accent brand-bg-primary text-white p-3 rounded-full inline-block text-2xl font-bold">3</span>
+                        <h4 class="text-xl font-bold brand-primary">Humildad Cultural</h4>
+                        <p class="text-gray-600">Un compromiso de autoevaluación y corrección activa de desequilibrios de poder. Implica reconocer al adolescente como el experto de su propia cultura, esencial en temas sensibles como salud mental o sexual.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Necesidades Sanitarias (Impacto) -->
+        <section id="necesidades" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h3 class="text-4xl font-extrabold brand-primary mb-4">Necesidades Sanitarias Clave</h3>
+                <p class="text-lg text-gray-600 mb-12 max-w-3xl mx-auto">Estas son las áreas críticas donde la enfermería culturalmente competente puede mejorar radicalmente la adherencia y los resultados en salud.</p>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Card 1: Barrera Idiomática y Comunicación -->
+                    <div class="impact-card p-6 rounded-xl bg-white text-gray-800 space-y-3 border-t-4 border-haitian-blue">
+                        <span class="haitian-blue text-white text-3xl mb-2 p-2 rounded-lg inline-block">🗣️</span>
+                        <h4 class="text-xl font-bold brand-primary">Comunicación y Kreyòl</h4>
+                        <p class="text-gray-600 text-sm">La dificultad para establecer comunicación efectiva vulnera la confidencialidad. Nos enfocamos en proveer **frases clave en Criollo Haitiano** y un protocolo de uso de intérpretes profesionales.</p>
+                    </div>
+
+                    <!-- Card 2: Salud Mental y Trauma -->
+                    <div class="impact-card p-6 rounded-xl bg-white text-gray-800 space-y-3 border-t-4 border-tropical-accent">
+                        <span class="tropical-accent text-white text-3xl mb-2 p-2 rounded-lg inline-block">🧠</span>
+                        <h4 class="text-xl font-bold brand-primary">Trauma Migratorio y Bienestar</h4>
+                        <p class="text-gray-600 text-sm">El alto riesgo de ansiedad/TEPT y la somatización de síntomas psicológicos. Es vital reconocer el estigma cultural que lleva a buscar ayuda en la comunidad o líderes religiosos, diseñando intervenciones respetuosas.</p>
+                    </div>
+
+                    <!-- Card 3: Salud Sexual y Reproductiva (SSR) -->
+                    <div class="impact-card p-6 rounded-xl bg-white text-gray-800 space-y-3 border-t-4 border-chilean-red">
+                        <span class="chilean-red text-white text-3xl mb-2 p-2 rounded-lg inline-block">🤰</span>
+                        <h4 class="text-xl font-bold brand-primary">SSR y Derechos Adolescentes</h4>
+                        <p class="text-gray-600 text-sm">Desconocimiento sobre la normativa chilena de autonomía en SSR. Se requiere tacto y confidencialidad para abordar el tema, respetando las creencias culturales sin comprometer la información sobre métodos anticonceptivos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Sección de Contacto y Footer -->
+        <footer id="contacto" class="py-12 bg-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h3 class="text-3xl font-extrabold brand-primary mb-4">Conéctate con Nosotros</h3>
+                <p class="text-lg text-gray-600 mb-8">Síguenos en Instagram para contenido diario y colaboraciones:</p>
+                <a href="https://www.instagram.com/santepoutout/" target="_blank" class="inline-flex items-center px-6 py-3 bg-pink-500 text-white text-lg font-bold rounded-xl hover:bg-pink-600 transition duration-300 shadow-xl">
+                    <!-- Ícono de Instagram usando SVG inline -->
+                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.5 0h9a7.5 7.5 0 017.5 7.5v9a7.5 7.5 0 01-7.5 7.5h-9a7.5 7.5 0 01-7.5-7.5v-9A7.5 7.5 0 017.5 0zm.5 2a5.5 5.5 0 00-5.5 5.5v9a5.5 5.5 0 005.5 5.5h9a5.5 5.5 0 005.5-5.5v-9A5.5 5.5 0 0017.5 2h-9zM12 7.5A4.5 4.5 0 1012 16.5 4.5 4.5 0 0012 7.5zM12 9a3 3 0 110 6 3 3 0 010-6zM18 5.5a1 1 0 100 2 1 1 0 000-2z"/>
+                    </svg>
+                    @santepoutout
+                </a>
+
+                <p class="mt-10 text-sm text-gray-500">© 2025 Santepoutout. Todos los derechos reservados. Un proyecto de enfermería con foco en la justicia social.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Script de Three.js para la interactividad 3D (Sin cambios, mantiene la animación y responsividad) -->
+    <script>
+        // === CONFIGURACIÓN DE THREE.JS PARA EL ELEMENTO INTERACTIVO ===
+
+        let scene, camera, renderer, globe, mouseX = 0, mouseY = 0;
+        const container = document.getElementById('three-container');
+
+        // Inicializa la escena 3D
+        function initThree() {
+            // 1. Escena
+            scene = new THREE.Scene();
+
+            // 2. Cámara
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            // 3. Renderizador
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+
+            // 4. Geometría (Un símbolo abstracto de conexión/salud)
+            // Usaremos una IcosahedronGeometry para un look más moderno y facetado
+            const geometry = new THREE.IcosahedronGeometry(1.5, 1);
+
+            // 5. Material (Elegante y semi-transparente)
+            const material = new THREE.MeshPhongMaterial({
+                color: 0x0F172A, // Azul muy oscuro (marca principal)
+                transparent: true,
+                opacity: 0.8,
+                wireframe: true,
+                shininess: 100
+            });
+
+            // 6. Malla
+            globe = new THREE.Mesh(geometry, material);
+            scene.add(globe);
+
+            // 7. Luces (para darle sofisticación y volumen)
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Luz suave
+            scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.7);
+            directionalLight.position.set(5, 5, 5).normalize();
+            scene.add(directionalLight);
+
+            // 8. Eventos de Interacción (Movimiento del Mouse)
+            document.addEventListener('mousemove', onDocumentMouseMove);
+            window.addEventListener('resize', onWindowResize);
+        }
+
+        // Función para manejar el movimiento del ratón
+        function onDocumentMouseMove(event) {
+            // Normalizar las coordenadas del ratón a un rango de -1 a 1
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        }
+
+        // Función para hacer responsivo el canvas 3D
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Bucle de animación
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotación automática suave
+            globe.rotation.x += 0.001;
+            globe.rotation.y += 0.002;
+
+            // Interacción: Mover el objeto 3D basado en el ratón
+            // Suaviza la respuesta (lerp) para un movimiento elegante
+            const targetRotationX = mouseY * 0.5;
+            const targetRotationY = mouseX * 0.5;
+
+            globe.rotation.x += (targetRotationX - globe.rotation.x) * 0.05;
+            globe.rotation.y += (targetRotationY - globe.rotation.y) * 0.05;
+
+            renderer.render(scene, camera);
+        }
+
+        // Inicializar Three.js cuando la ventana esté cargada
+        window.onload = function() {
+            initThree();
+            animate();
+        };
+
+    </script>
+
+</body>
+</html>
